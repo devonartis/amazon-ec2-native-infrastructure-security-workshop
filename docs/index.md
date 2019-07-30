@@ -6,12 +6,12 @@ First you'll want to [Set up](./setup.md) your environment for this lab by runni
 
 Then you will perform multiple steps that will guide you through different security tasks: 
 
-1.    [Enable granular logging](./labsteps.md/#enable-granular-logging-to-see-everything-in-your-aws-environment)
-2.    [Improve granular control of communication](#granular-provable-control-of-communications)
-3.    [Improve granular network-based controls](#when-security-includes-explicitly-denying-network-access)
-4.    [Evaluate detailed logging capabilities](#logging-actions-in-your-environment-and-making-it-easy-to-see-whats-changed)
-5.    [Evaluate network-based protections](#logging-and-monitoring-of-the-network-for-bad-behavior-is-important-too)
-6.    [Minimize admin access risk](#reducing-the-risk-of-admin-access-and-administrative-ports)
+1.    [Enable granular logging](./labsteps.md#enable-granular-logging-to-see-everything-in-your-aws-environment)
+2.    [Improve granular control of communication](./labsteps.md#granular-provable-control-of-communications)
+3.    [Improve granular network-based controls](./labsteps.md#when-security-includes-explicitly-denying-network-access)
+4.    [Evaluate detailed logging capabilities](./labsteps.md#logging-actions-in-your-environment-and-making-it-easy-to-see-whats-changed)
+5.    [Evaluate network-based protections](./labsteps.md#logging-and-monitoring-of-the-network-for-bad-behavior-is-important-too)
+6.    [Minimize admin access risk](./labsteps.md#reducing-the-risk-of-admin-access-and-administrative-ports)
 
 If you complete all six steps with time to spare, there is [Extra Credit](./extracredit.md) available.
 
