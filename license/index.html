@@ -13,7 +13,7 @@
         <meta name="description" content="Whether you are migrating existing workloads or creating something new in AWS, it can be tempting to bring your current security solutions with you. In this hands-on workshop, we help you identify which cloud-native solutions can mitigate the same risks while providing scalability, reliability, and cost optimization at a low operational burden. During this workshop, you will learn how to use cloud native controls like CloudTrail, Security Groups, GuardDuty and many more, to secure your cloud architecture.">
       
       
-        <link rel="canonical" href="https://ec2-infra-sec.awssecworkshops.com/cleanup/">
+        <link rel="canonical" href="https://ec2-infra-sec.awssecworkshops.com/license/">
       
       
         <meta name="author" content="aws-security-workshops@amazon.com">
@@ -42,7 +42,7 @@
     
     
       
-        <title>Clean Up - Mitigate Risks Using Cloud-Native Infrastructure Security</title>
+        <title>License - Mitigate Risks Using Cloud-Native Infrastructure Security</title>
       
     
     
@@ -85,7 +85,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#clean-up" tabindex="1" class="md-skip">
+      <a href="#license" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -143,7 +143,7 @@
                   Mitigate Risks Using Cloud-Native Infrastructure Security
                 </span>
                 <span class="md-header-nav__topic">
-                  Clean Up
+                  License
                 </span>
               
             
@@ -379,45 +379,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Clean Up
-      </label>
-    
-    <a href="./" title="Clean Up" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../cleanup/" title="Clean Up" class="md-nav__link">
       Clean Up
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#clean-up" class="md-nav__link">
-    Clean up:
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -437,11 +403,20 @@
       
       
 
+  
 
-  <li class="md-nav__item">
-    <a href="../license/" title="License" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="License" class="md-nav__link md-nav__link--active">
       License
     </a>
+    
   </li>
 
     
@@ -459,22 +434,8 @@
 <nav class="md-nav md-nav--secondary">
   
   
+    
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#clean-up" class="md-nav__link">
-    Clean up:
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
   
 </nav>
                   </div>
@@ -486,30 +447,23 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/aws-samples/amazon-ec2-native-infrastructure-security-workshop/edit/master/docs/cleanup.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/aws-samples/amazon-ec2-native-infrastructure-security-workshop/edit/master/docs/license.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                  <h1>Clean Up</h1>
-                
-                <h2 id="clean-up">Clean up:</h2>
-<p>In order to avoid unnecessary ongoing expenses, make sure to clean up all the resources you created in this lab. </p>
-<ol>
-<li><strong>Empty</strong> and <strong>Delete</strong> your <strong>fdn203-demo-bucket-{myname}</strong> bucket</li>
-<li><strong>Empty</strong> and <strong>Delete</strong> your <strong>fdn203-ssmlogs-bucket-{myname}</strong> bucket<ul>
-<li>If you got this far</li>
-</ul>
-</li>
-<li>Turn off <strong>Config</strong></li>
-<li>Empty and Delete your <strong>Config Bucket</strong></li>
-<li>Delete your <strong>CloudTrail Trail</strong></li>
-<li>Disable <strong>GuardDuty</strong></li>
-<li>In <strong>VPC</strong>, go to the <strong>NACLs</strong> you created and <strong>disassociate</strong> them from any subnets.</li>
-<li>Now <strong>Delete</strong> the <strong>NACLs</strong>.</li>
-<li>In CloudFormation <strong>Delete your Stack</strong><ul>
-<li>Wait until this is complete</li>
-</ul>
-</li>
-</ol>
+                <h1 id="license">License</h1>
+<p><strong>MIT License</strong></p>
+<p>Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this
+software and associated documentation files (the "Software"), to deal in the Software
+without restriction, including without limitation the rights to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so.</p>
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
                 
                   
                 
@@ -530,7 +484,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../extracredit/" title="Extra Credit" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../contribute/" title="Contributing" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -539,25 +493,11 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Extra Credit
-              </span>
-            </div>
-          </a>
-        
-        
-          <a href="../contribute/" title="Contributing" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
                 Contributing
               </span>
             </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
           </a>
+        
         
       </nav>
     </div>
