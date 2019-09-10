@@ -1,6 +1,31 @@
-# Mitigate Risks Using Cloud-Native Infrastructure Security
+# Overview
 
-In this workshop, you will learn how to use cloud native controls like CloudTrail, Security Groups, GuardDuty and many more, to secure your cloud architecture.
+Mitigate Risks Using Cloud-Native Infrastructure Security
+
+Whether you are migrating existing workloads or creating something new in AWS, it can be tempting to bring your current security solutions with you. In this hands-on workshop, we help you identify which cloud-native solutions can mitigate the same risks while providing scalability, reliability, and cost optimization at a low operational burden. During this workshop, you will learn how to use cloud native controls like CloudTrail, Security Groups, GuardDuty and many more, to secure your cloud architecture.
+
+* **Level**: Intermediate
+* **Duration**: 2 - 3 hours
+* **<a href="https://awssecworkshops.com/getting-started/" target="_blank">Prerequisites</a href>**: AWS Account, Admin IAM User
+* **<a href="https://www.nist.gov/cyberframework/online-learning/components-framework" target="_blank">CSF Functions</a>**: Prevent, Detect 
+* **<a href="https://d0.awsstatic.com/whitepapers/AWS_CAF_Security_Perspective.pdf" target="_blank">CAF Components</a>**: Preventative, Detective
+* **AWS Services**: Amazon CloudWatch, mazon GuardDuty AWS CloudTrail, AWS Config, Security Groups, Network ACLs
+
+## Scenario 
+For this workshop, you will be securing an architecture that was a "refactored" migration from a traditional three tier on premise architecture. 
+
+The network has two internet facing VPCs - one VPC for the Web Application and one sandbox for the developers called the Proof of Concept VPC. Additionally, there is a Services VPC that allows administrators to manage the network. 
+
+## Architecture 
+![Architecture](./images/architecture.png "Workload Architecture")
+
+## Presentation Deck  
+[Workshop Presentation Deck](./amazon-ec2-native-infrastructure-security-workshop.pdf)
+
+## Region
+
+This workshop has been tested in *us-east-1*, *us-east-2*, and *us-west-1*
+
 
 First you'll want to [Set up](./setup.md) your environment for this lab by running CloudFormation.
 
