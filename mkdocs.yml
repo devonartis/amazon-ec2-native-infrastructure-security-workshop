@@ -1,7 +1,55 @@
+# Project information
+
+
 site_name: Mitigate Risks Using Cloud-Native Infrastructure Security
+site_short_name: Native Infrastructure Security
+site_description: 'Whether you are migrating existing workloads or creating something new in AWS, it can be tempting to bring your current security solutions with you. In this hands-on workshop, we help you identify which cloud-native solutions can mitigate the same risks while providing scalability, reliability, and cost optimization at a low operational burden. During this workshop, you will learn how to use cloud native controls like CloudTrail, Security Groups, GuardDuty and many more, to secure your cloud architecture.'
+site_author: 'aws-security-workshops@amazon.com'
+site_url: 'https://ec2-infra-sec.awssecworkshops.com/'
+
+# Repository
+repo_name: 'aws-samples/amazon-ec2-native-infrastructure-security-workshop'
+repo_url: 'https://github.com/aws-samples/amazon-ec2-native-infrastructure-security-workshop'
+
+
+# Copyright
+copyright: '&copy; 2019, Amazon Web Services, Inc. or its affiliates. All rights reserved.'
+
+# Configuration
+theme:
+  name: 'material'
+  logo: 'assets/images/aws_smile_logo.png'
+  favicon: 'assets/images/aws-favicon.ico'
+  feature:
+    tabs: true
+  custom_dir: 'docs/theme'
+
+# Customization
+extra_css:
+  - 'stylesheets/custom.css'
+extra:
+  social:
+    - type: 'home'
+      link: 'https://awssecworkshops.com'
+    - type: 'shield'
+      link: 'https://aws.amazon.com/security/'
+    - type: 'twitter'
+      link: 'https://twitter.com/awssecurityinfo?lang=en'
+    - type: 'rss'
+      link: 'https://aws.amazon.com/blogs/security/'
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - codehilite
+  - pymdownx.details
+
+# Navigation
 nav:
-    - Home: index.md
-    - Set Up: setup.md
-    - Lab: labsteps.md
-    - Extra Credit: extracredit.md
-    - Clean Up: cleanup.md
+  - Overview: 'index.md'
+  - Set Up: 'setup.md'
+  - Lab: 'labsteps.md'
+  - Extra Credit: 'extracredit.md'
+  - Clean Up: 'cleanup.md'
+  - Contributing: 'contribute.md'
+  - License: 'license.md'
