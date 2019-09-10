@@ -1,11 +1,9 @@
 # Overview
 
-Mitigate Risks Using Cloud-Native Infrastructure Security
-
 Whether you are migrating existing workloads or creating something new in AWS, it can be tempting to bring your current security solutions with you. In this hands-on workshop, we help you identify which cloud-native solutions can mitigate the same risks while providing scalability, reliability, and cost optimization at a low operational burden. During this workshop, you will learn how to use cloud native controls like CloudTrail, Security Groups, GuardDuty and many more, to secure your cloud architecture.
 
 * **Level**: Intermediate
-* **Duration**: 2 - 3 hours
+* **Duration**: 1 hour
 * **<a href="https://awssecworkshops.com/getting-started/" target="_blank">Prerequisites</a href>**: AWS Account, Admin IAM User
 * **<a href="https://www.nist.gov/cyberframework/online-learning/components-framework" target="_blank">CSF Functions</a>**: Prevent, Detect 
 * **<a href="https://d0.awsstatic.com/whitepapers/AWS_CAF_Security_Perspective.pdf" target="_blank">CAF Components</a>**: Preventative, Detective

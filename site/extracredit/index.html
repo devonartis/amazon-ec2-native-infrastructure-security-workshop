@@ -495,14 +495,14 @@
 <p>There is a way to log all commands sent to the instance as well. First, you have to create S3 buckets and CloudWatch Logs.</p>
 <ol>
 <li>Go to <strong>S3</strong>.</li>
-<li><strong>Create a Bucket</strong> called <strong>fdn203-ssmlogs-bucket-{myname}</strong>. Before you move on, turn on <strong>Default Encryption</strong> using <strong>AWS-KMS</strong> and the <strong>aws/s3</strong></li>
+<li><strong>Create a Bucket</strong> called <strong>cloudsecurity-ssmlogs-bucket-{myname}</strong>. Before you move on, turn on <strong>Default Encryption</strong> using <strong>AWS-KMS</strong> and the <strong>aws/s3</strong></li>
 <li>Then <strong>Grant Amazon S3 Log Delivery group write access to the bucket</strong>.</li>
 <li>Go to <strong>CloudWatch</strong>.</li>
-<li>In <strong>Logs</strong> you must <strong>Create log group</strong>, called <strong>fnd203-ssmlogs-logs</strong>.</li>
+<li>In <strong>Logs</strong> you must <strong>Create log group</strong>, called <strong>cloudsecurity-ssmlogs-logs</strong>.</li>
 <li>Go to <strong>IAM</strong>.</li>
 <li>We will modify the <strong>Role</strong> called SharedServerConnectivityRole</li>
-<li>Expand the Inline Policy and click <strong>Edit Policy</strong></li>
-<li><strong>Add additional permissions</strong> including<div class="codehilite"><pre><span></span> <span class="o">**</span><span class="n">S3</span><span class="o">**</span>  
+<li>Expand the Inline Policy and ick <strong>Edit Policy</strong></li>
+<li><strong>Add additional permissions</strong> inuding<div class="codehilite"><pre><span></span> <span class="o">**</span><span class="n">S3</span><span class="o">**</span>  
  <span class="o">&gt;</span>    <span class="o">**</span><span class="k">Write</span><span class="o">**</span>  
  <span class="o">&gt;</span>    <span class="o">**</span><span class="n">Bucket</span><span class="p">:</span> <span class="k">Any</span><span class="o">**</span>  
  <span class="o">&gt;</span>    <span class="o">**</span><span class="k">Object</span><span class="o">**</span><span class="p">:</span> <span class="o">**</span><span class="k">Any</span><span class="o">**</span>
@@ -520,8 +520,8 @@
 <em>This can be more restrictive in a production environment.</em></li>
 <li>Now go back to <strong>Systems Manager</strong>, <strong>Session Manager</strong>.</li>
 <li>Let’s use <strong>Preferences</strong> to set up logging.</li>
-<li><strong>Edit</strong> the settings to <strong>Write session output</strong> and choose the bucket called “<strong>fdn203-ssmlogs-bucket-{myname}</strong>”. </li>
-<li>Let’s also send the output to <strong>Cloudwatch logs</strong>, we can deselect <strong>Encrypt Log Data</strong>, and create a log group name “<strong>fdn203-demo-bucket-{myname}</strong>”.<ul>
+<li><strong>Edit</strong> the settings to <strong>Write session output</strong> and choose the bucket called “<strong>cloudsecurity-ssmlogs-bucket-{myname}</strong>”. </li>
+<li>Let’s also send the output to <strong>Cloudwatch logs</strong>, we can deselect <strong>Encrypt Log Data</strong>, and create a log group name “<strong>cloudsecurity-demo-bucket-{myname}</strong>”.<ul>
 <li>In production I would not recommend storing unencrypted logs.</li>
 </ul>
 </li>
@@ -536,7 +536,7 @@
 </ol>
 </li>
 </ol>
-<p>Now that you've completed the extra credit, you can return to <a href="..">the main lab and continue with cleanup</a>.</p>
+<p>Now that you've completed the extra credit, you should continue to <a href="../cleanup/">continue with eanup</a>.</p>
                 
                   
                 

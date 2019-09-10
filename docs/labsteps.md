@@ -18,7 +18,7 @@ We want to enable detailed, holistic logging and network-based security monitori
       * What are we capturing, exactly? 
 4.    Let’s set a **Trail Name** of “**All-API-Commands-across-all-Regions**”. Then let’s **Apply trail to all regions** with a single click.
 5.    Seeing **All Read/Write events** would show us every API call made to our AWS environment moving forward.
-6.    We should save these for further evaluation, so you would want to **Create a new S3 bucket** and call it “**fdn203-demo-bucket-{myname}**”. (Don’t forget, S3 buckets must have unique names, so make sure to add your name at the end. They can also only be lower case letters, numbers, “-“, and “.”)
+6.    We should save these for further evaluation, so you would want to **Create a new S3 bucket** and call it “**cloudsecurity-demo-bucket-{myname}**”. (Don’t forget, S3 buckets must have unique names, so make sure to add your name at the end. They can also only be lower case letters, numbers, “-“, and “.”)
 7.    Let’s **Create** that trail. We can come back to look at it later.
 Monitoring what API calls are made is great, but it’s difficult to convert that into something like Change Management for all infrastructure in the cloud. Is there a service to help there?
 8.    **Services** called **Config** would be worth looking into.
