@@ -21,14 +21,14 @@ We want to enable detailed, holistic logging and network-based security monitori
 6.    We should save these for further evaluation, so you would want to **Create a new S3 bucket** and call it “**cloudsecurity-demo-bucket-{myname}**”. (Don’t forget, S3 buckets must have unique names, so make sure to add your name at the end. They can also only be lower case letters, numbers, “-“, and “.”)
 7.    Let’s **Create** that trail. We can come back to look at it later.
 Monitoring what API calls are made is great, but it’s difficult to convert that into something like Change Management for all infrastructure in the cloud. Is there a service to help there?
-8.    **Services** called **Config** would be worth looking into.
+8.    Let us also look into one of the **Services** called **Config**.
 9.    After **Getting Started** we can start tracking All resources, Including Global Resources
 10.    We would want to store this data in a central bucket as well. Let’s **Create a new bucket** and use the default to ensure its unique (Note: We could use the bucket we just created, but you would have to add permissions, which would take more time).
 11.    AWS does a good job of clearly defining roles, so let’s allow AWS to **Create AWS Config service-linked role**
 12.    **Next**, we can choose rules we want to test against, but we can do that later too if we **Skip** it for now.
 13.    **Confirm** these choices to enable Config to monitor all changes to our environment. And we’ll see that in a bit.  
 Now that we’ve got good logging of the Control Plane (API commands and Changes to the environment), let’s turn on logging of the Data Plane.
-14.    Using a **Service** like **GuardDuty** you can monitor logs in near-real-time for security anomalies.
+14.    Then, let us use a **Service** like **GuardDuty** to monitor logs in near-real-time for security anomalies.
 15.    After **Getting Started** we can quickly enable this service with just one click. It’s that easy. What is GuardDuty monitoring, we’ll check that out later.
 
 When we looked at our on-premises environment we identified that disjointed security tooling, lack of insight into what’s going on in the environment, and difficulty managing change control and permissions in the environment all led to risks becoming problems pretty fast. With the services we just enabled, we’ll see how we now have complete insight into who’s doing what in the environment, what changes are being made, and if and when problems start to arise.
@@ -40,7 +40,7 @@ Let's review and improve upon granular control of communication between workload
 2.    Picking a Security Group like the **Services Server Security Group** we can see the more traditional way of doing things.
 3.    Checking the **Outbound** rules, we see the servers can talk to a range of IP’s, 65,536 to be precise. But there are only maybe 6-8 servers that they actually need to talk to.
 4.    Well, if we copy the **GroupID** of the **PoC Web Server Security Group** we start to reduce that number
-5.    **Edit** the **Outbound** **Services Server Security Group** rules and replace the 10.0.0.0/16 with the Security Group name you copied.
+5.    **Edit** the **Outbound** set of rules for the **Services Server Security Group** and replace the 10.0.0.0/16 with the Security Group name you copied.
 6.    **Save** this and you’ll see the **Destination** of the rule now shows the Security Group you listed.
 7.    You can **repeat** this by **Edit**ing and **Adding Rule**s for each security group you want to allow access to.
 
@@ -51,9 +51,9 @@ Let's improve on our network-based controls by using Network ACLs to prevent sid
 
 1.    Security Groups are awesome at allowing access, but in **VPC** Services, **Network ACLs** are great at explicitly blocking them.
 2.    For instance, if you wanted to make sure you explicitly blocked the Load Balancer in my WebApp from talking to my Database servers, you could **Create a network ACL**.
-3.    I would Name it “**LoadBalancerIsolation**” and put it in the **Web Application VPC**.
+3.    I would name it “**LoadBalancerIsolation**” and put it in the **Web Application VPC**.
 4.    I would add an **Outbound Rule** by **Editing Outbound Rules**
-5.    **Adding Rules** like these would block whatever Subnet you apply this to from talking to the Database Subnets but still allow access to the rest of the network, including the Web and Services VPC.
+5.    **Adding Rules** like these would block whatever Subnet you apply this to from talking to the Database Subnets but still allow access to the rest of the network, including the Web and Services VPC. Note that nACLs are evaluated in thespecific order of their Rule #. 
       * Rule #: **50**  
       Of type **All Traffic**  
       To the Destination **10.0.2.0/24**  

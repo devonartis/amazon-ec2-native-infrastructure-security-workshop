@@ -1,5 +1,3 @@
-## Extra Credit
-
 There is a way to log all commands sent to the instance as well. First, you have to create S3 buckets and CloudWatch Logs.
 
 1.    Go to **S3**.

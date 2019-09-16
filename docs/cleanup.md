@@ -1,4 +1,3 @@
-## Clean up:
 In order to avoid unnecessary ongoing expenses, make sure to clean up all the resources you created in this lab. 
 
 1.  **Empty** and **Delete** your **cloudsecurity-demo-bucket-{myname}** bucket
