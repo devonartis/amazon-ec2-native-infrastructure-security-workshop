@@ -7,8 +7,8 @@ There is a way to log all commands sent to the instance as well. First, you have
 5.    In **Logs** you must **Create log group**, called **cloudsecurity-ssmlogs-logs**.
 6.    Go to **IAM**.
 7.    We will modify the **Role** called SharedServerConnectivityRole
-8.    Expand the Inline Policy and ick **Edit Policy**
-9.    **Add additional permissions** inuding
+8.    Expand the Inline Policy and click **Edit Policy**
+9.    **Add additional permissions** including
 
          **S3**  
          >    **Write**  
@@ -19,6 +19,8 @@ There is a way to log all commands sent to the instance as well. First, you have
          >    **Write**  
          >    **Log Group: Any**  
          >    **Log Stream: Any**  
+         >    **logs:DescribeLogGroups**  
+         >    **logs:DescribeLogStreams**  
 10.    **Review the policy** and **Save Changes**
 11.    If there are any errors, go to **Previous** and keep adding **Any** to the resources the policy requires defined.  
 _This can be more restrictive in a production environment._
@@ -36,4 +38,4 @@ _This can be more restrictive in a production environment._
 19.    Checking **Session History** you will see the **Output Location** of your log.
 20.    Look at the **CloudWatch Logs** of your session and see what commands you typed.
 
-Now that you've completed the extra credit, you should continue to [continue with eanup](./cleanup.md).
+Now that you've completed the extra credit, you should continue to [continue with cleanup](./cleanup.md).
