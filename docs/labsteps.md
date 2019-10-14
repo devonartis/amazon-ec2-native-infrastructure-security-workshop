@@ -53,7 +53,7 @@ Let's improve on our network-based controls by using Network ACLs to prevent sid
 2.    For instance, if you wanted to make sure you explicitly blocked the Load Balancer in my WebApp from talking to my Database servers, you could **Create a network ACL**.
 3.    I would name it “**LoadBalancerIsolation**” and put it in the **Web Application VPC**.
 4.    I would add an **Outbound Rule** by **Editing Outbound Rules**
-5.    **Adding Rules** like these would block whatever Subnet you apply this to from talking to the Database Subnets but still allow access to the rest of the network, including the Web and Services VPC. Note that nACLs are evaluated in thespecific order of their Rule #. 
+5.    **Adding Rules** like these would block whatever Subnet you apply this to from talking to the Database Subnets but still allow access to the rest of the network, including the Web and Services VPC. Note that nACLs are evaluated in the specific order of their Rule #.
       * Rule #: **50**  
       Of type **All Traffic**  
       To the Destination **10.0.2.0/24**  
@@ -66,8 +66,8 @@ Let's improve on our network-based controls by using Network ACLs to prevent sid
            and
       * Rule #: **100**  
       Of type **All Traffic**  
-      To the Destination **10.0.0.0/8**  
-      And an **Allow** Behavior  
+      To the Destination **0.0.0.0/0**
+      And an **Allow** Behavior
 6.    After **Saving** you need to allow access to that subnet from the internet, so recreating the **All Traffic Allow** rule for **Inbound Rules** is necessary. **Add a Rule**
       * Rule #: **100**  
       Of type **All Traffic**  
