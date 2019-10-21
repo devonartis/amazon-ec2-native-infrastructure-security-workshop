@@ -4,10 +4,10 @@ Whether you are migrating existing workloads or creating something new in AWS, i
 
 * **Level**: Intermediate
 * **Duration**: 1 hour
-* **<a href="https://awssecworkshops.com/getting-started/" target="_blank">Prerequisites</a href>**: AWS Account, Admin IAM User
+* **<a href="https://awssecworkshops.com/getting-started/" target="_blank">Prerequisites</a>**: AWS Account, Admin IAM User
 * **<a href="https://www.nist.gov/cyberframework/online-learning/components-framework" target="_blank">CSF Functions</a>**: Prevent, Detect 
 * **<a href="https://d0.awsstatic.com/whitepapers/AWS_CAF_Security_Perspective.pdf" target="_blank">CAF Components</a>**: Preventative, Detective
-* **AWS Services**: Amazon CloudWatch, Amazon GuardDuty AWS CloudTrail, AWS Config, Security Groups, Network ACLs
+* **AWS Services**: Amazon CloudWatch, Amazon GuardDuty, AWS CloudTrail, AWS Config, Security Groups, Network ACLs
 
 ## Scenario 
 For this workshop, you will be securing an architecture that was a "refactored" migration from a traditional three tier on premise architecture. 
