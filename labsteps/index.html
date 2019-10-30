@@ -603,14 +603,14 @@
 <li>We should save these for further evaluation, so you would want to <strong>Create a new S3 bucket</strong> and call it “<strong>cloudsecurity-demo-bucket-{myname}</strong>”. (Don’t forget, S3 buckets must have unique names, so make sure to add your name at the end. They can also only be lower case letters, numbers, “-“, and “.”)</li>
 <li>Let’s <strong>Create</strong> that trail. We can come back to look at it later.
 Monitoring what API calls are made is great, but it’s difficult to convert that into something like Change Management for all infrastructure in the cloud. Is there a service to help there?</li>
-<li><strong>Services</strong> called <strong>Config</strong> would be worth looking into.</li>
+<li>Let us also look into one of the <strong>Services</strong> called <strong>Config</strong>.</li>
 <li>After <strong>Getting Started</strong> we can start tracking All resources, Including Global Resources</li>
 <li>We would want to store this data in a central bucket as well. Let’s <strong>Create a new bucket</strong> and use the default to ensure its unique (Note: We could use the bucket we just created, but you would have to add permissions, which would take more time).</li>
 <li>AWS does a good job of clearly defining roles, so let’s allow AWS to <strong>Create AWS Config service-linked role</strong></li>
 <li><strong>Next</strong>, we can choose rules we want to test against, but we can do that later too if we <strong>Skip</strong> it for now.</li>
 <li><strong>Confirm</strong> these choices to enable Config to monitor all changes to our environment. And we’ll see that in a bit.<br />
 Now that we’ve got good logging of the Control Plane (API commands and Changes to the environment), let’s turn on logging of the Data Plane.</li>
-<li>Using a <strong>Service</strong> like <strong>GuardDuty</strong> you can monitor logs in near-real-time for security anomalies.</li>
+<li>Then, let us use a <strong>Service</strong> like <strong>GuardDuty</strong> to monitor logs in near-real-time for security anomalies.</li>
 <li>After <strong>Getting Started</strong> we can quickly enable this service with just one click. It’s that easy. What is GuardDuty monitoring, we’ll check that out later.</li>
 </ol>
 <p>When we looked at our on-premises environment we identified that disjointed security tooling, lack of insight into what’s going on in the environment, and difficulty managing change control and permissions in the environment all led to risks becoming problems pretty fast. With the services we just enabled, we’ll see how we now have complete insight into who’s doing what in the environment, what changes are being made, and if and when problems start to arise.</p>
@@ -621,7 +621,7 @@ Now that we’ve got good logging of the Control Plane (API commands and Changes
 <li>Picking a Security Group like the <strong>Services Server Security Group</strong> we can see the more traditional way of doing things.</li>
 <li>Checking the <strong>Outbound</strong> rules, we see the servers can talk to a range of IP’s, 65,536 to be precise. But there are only maybe 6-8 servers that they actually need to talk to.</li>
 <li>Well, if we copy the <strong>GroupID</strong> of the <strong>PoC Web Server Security Group</strong> we start to reduce that number</li>
-<li><strong>Edit</strong> the <strong>Outbound</strong> <strong>Services Server Security Group</strong> rules and replace the 10.0.0.0/16 with the Security Group name you copied.</li>
+<li><strong>Edit</strong> the <strong>Outbound</strong> set of rules for the <strong>Services Server Security Group</strong> and replace the 10.0.0.0/16 with the Security Group name you copied.</li>
 <li><strong>Save</strong> this and you’ll see the <strong>Destination</strong> of the rule now shows the Security Group you listed.</li>
 <li>You can <strong>repeat</strong> this by <strong>Edit</strong>ing and <strong>Adding Rule</strong>s for each security group you want to allow access to.</li>
 </ol>
@@ -631,9 +631,9 @@ Now that we’ve got good logging of the Control Plane (API commands and Changes
 <ol>
 <li>Security Groups are awesome at allowing access, but in <strong>VPC</strong> Services, <strong>Network ACLs</strong> are great at explicitly blocking them.</li>
 <li>For instance, if you wanted to make sure you explicitly blocked the Load Balancer in my WebApp from talking to my Database servers, you could <strong>Create a network ACL</strong>.</li>
-<li>I would Name it “<strong>LoadBalancerIsolation</strong>” and put it in the <strong>Web Application VPC</strong>.</li>
+<li>I would name it “<strong>LoadBalancerIsolation</strong>” and put it in the <strong>Web Application VPC</strong>.</li>
 <li>I would add an <strong>Outbound Rule</strong> by <strong>Editing Outbound Rules</strong></li>
-<li><strong>Adding Rules</strong> like these would block whatever Subnet you apply this to from talking to the Database Subnets but still allow access to the rest of the network, including the Web and Services VPC.<ul>
+<li><strong>Adding Rules</strong> like these would block whatever Subnet you apply this to from talking to the Database Subnets but still allow access to the rest of the network, including the Web and Services VPC. Note that nACLs are evaluated in thespecific order of their Rule #. <ul>
 <li>Rule #: <strong>50</strong><br />
   Of type <strong>All Traffic</strong><br />
   To the Destination <strong>10.0.2.0/24</strong><br />
