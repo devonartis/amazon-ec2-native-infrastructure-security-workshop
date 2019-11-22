@@ -1,3 +1,29 @@
+## Extra Credit Sections
+
+1.    [Minimize admin access risk](#reducing-the-risk-of-admin-access-and-administrative-ports)
+2.    [Log all commands](#logging-all-commands)
+
+## Reducing the risk of Admin access and administrative ports
+Finally, let's further reduce administrative risks by reducing access and improving logging. With our current setup, there is still a risk of open administrative ports, right? It's a bigger risk if those ports are open to the internet and a smaller risk if open internally for malware to find. Can we find a way around this requirement?
+
+1.    Let’s go back to **VPC** and **Security Groups**.
+2.    Open the **Services Server Security Group** and the **Inbound Rules**.
+3.    Now, despite the fact that those are made up IPs, you are going to **Edit Rules** and delete all the rules (Click the x on the right). Then **Save** and **Close**.
+4.    But with no access, how can we monitor or log into the box if we need to? Our **Service** called **Systems Manager** can help there.
+5.    Systems Manager has a feature called **Session Manager** worth checking out.
+6.    At **Sessions**, you can **Start a session** with any server with the SSM agent and access to the SSM Service.
+7.    We disabled all access to the **Services Server for AZ1**, yet there it is. Let’s select it and **Start session**.
+8.    Is this a console? For the AWS server? Let’s find out.
+      *    Type: curl http://169.254.169.254/latest/meta-data/instance-id
+           *   Does that instance ID look familiar?
+      *    Try: curl http://169.254.169.254/latest/meta-data/security-groups
+           *  That looks like the Security Group we modified doesn’t it?
+      *    Let’s try: Ping 8.8.8.8
+           *  Should it work?
+      *    Last time: curl http://169.254.169.254/latest/meta-data/iam/security-credentials/SharedServerConnectivityRole
+           *  Sure looks like an AWS server.
+
+## Logging all commands
 There is a way to log all commands sent to the instance as well. First, you have to create S3 buckets and CloudWatch Logs.
 
 1.    Go to **S3**.
@@ -21,6 +47,7 @@ There is a way to log all commands sent to the instance as well. First, you have
          >    **Log Stream: Any**  
          >    **logs:DescribeLogGroups**  
          >    **logs:DescribeLogStreams**  
+
 10.    **Review the policy** and **Save Changes**
 11.    If there are any errors, go to **Previous** and keep adding **Any** to the resources the policy requires defined.  
 _This can be more restrictive in a production environment._
@@ -31,9 +58,11 @@ _This can be more restrictive in a production environment._
          * In production I would not recommend storing unencrypted logs.
 16.    **Save** that configuration.
 17.    Now back at **Sessions**, you can **Start a session** with any server with the SSM agent and access to the SSM Service.
+
         >  curl http://169.254.169.254/latest/meta-data/instance-id  
         >  curl http://169.254.169.254/latest/meta-data/security-groups  
         >  curl http://169.254.169.254/latest/meta-data/iam/security-credentials/SharedServerConnectivityRole  
+
 18.    **Terminate** the connection.
 19.    Checking **Session History** you will see the **Output Location** of your log.
 20.    Look at the **CloudWatch Logs** of your session and see what commands you typed.

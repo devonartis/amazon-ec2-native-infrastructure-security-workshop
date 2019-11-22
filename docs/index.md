@@ -6,7 +6,7 @@ Whether you are migrating existing workloads or creating something new in AWS, i
 * **Duration**: 1 hour
 * **<a href="https://awssecworkshops.com/getting-started/" target="_blank">Prerequisites</a>**: AWS Account, Admin IAM User
 * **<a href="https://www.nist.gov/cyberframework/online-learning/components-framework" target="_blank">CSF Functions</a>**: Prevent, Detect 
-* **<a href="https://d0.awsstatic.com/whitepapers/AWS_CAF_Security_Perspective.pdf" target="_blank">CAF Components</a>**: Preventative, Detective
+* **<a href="https://d0.awsstatic.com/whitepapers/AWS_CAF_Security_Perspective.pdf" target="_blank">CAF Components</a>**: Preventative, Detective for Logging and Monitoring and Infrastructure Security
 * **AWS Services**: Amazon CloudWatch, Amazon GuardDuty, AWS CloudTrail, AWS Config, Security Groups, Network ACLs
 
 ## Scenario 
@@ -27,14 +27,14 @@ This workshop has been tested in *us-east-1*, *us-east-2*, and *us-west-1*
 
 First you'll want to [Set up](./setup.md) your environment for this lab by running CloudFormation.
 
-Then you will perform multiple steps that will guide you through different security tasks: 
+Then you will perform multiple steps that will guide you through different security tasks.  These steps will have you diving deep into two of the Core Epics of the Cloud Adoption Framework, namely "Logging and Monitoring" and "Infrastructure Security":
 
 1.    [Enable granular logging](./labsteps.md#enable-granular-logging-to-see-everything-in-your-aws-environment)
 2.    [Improve granular control of communication](./labsteps.md#granular-provable-control-of-communications)
 3.    [Improve granular network-based controls](./labsteps.md#when-security-includes-explicitly-denying-network-access)
 4.    [Evaluate detailed logging capabilities](./labsteps.md#logging-actions-in-your-environment-and-making-it-easy-to-see-whats-changed)
 5.    [Evaluate network-based protections](./labsteps.md#logging-and-monitoring-of-the-network-for-bad-behavior-is-important-too)
-6.    [Minimize admin access risk](./labsteps.md#reducing-the-risk-of-admin-access-and-administrative-ports)
+6.    [Consolidate findings](./labsteps.md#consolidating-findings-into-security-hub)
 
 If you complete all six steps with time to spare, there is [Extra Credit](./extracredit.md) available.
 
