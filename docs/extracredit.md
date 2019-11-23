@@ -27,7 +27,7 @@ _This can be more restrictive in a production environment._
 12.    Now go back to **Systems Manager**, **Session Manager**.
 13.    Let’s use **Preferences** to set up logging.
 14.    **Edit** the settings to **Write session output** and choose the bucket called “**cloudsecurity-ssmlogs-bucket-{myname}**”. 
-15.    Let’s also send the output to **Cloudwatch logs**, we can deselect **Encrypt Log Data**, and create a log group name “**cloudsecurity-demo-bucket-{myname}**”.
+15.    Let’s also send the output to **Cloudwatch logs**, we can deselect **Encrypt Log Data**, and create a log group name “**cloudsecurity-ssmlogs-logs**”.
          * In production I would not recommend storing unencrypted logs.
 16.    **Save** that configuration.
 17.    Now back at **Sessions**, you can **Start a session** with any server with the SSM agent and access to the SSM Service.
