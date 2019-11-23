@@ -542,10 +542,10 @@
 <ul>
 <li><strong>Level</strong>: Intermediate</li>
 <li><strong>Duration</strong>: 1 hour</li>
-<li><strong><a href="https://awssecworkshops.com/getting-started/" target="_blank">Prerequisites</a href></strong>: AWS Account, Admin IAM User</li>
+<li><strong><a href="https://awssecworkshops.com/getting-started/" target="_blank">Prerequisites</a></strong>: AWS Account, Admin IAM User</li>
 <li><strong><a href="https://www.nist.gov/cyberframework/online-learning/components-framework" target="_blank">CSF Functions</a></strong>: Prevent, Detect </li>
-<li><strong><a href="https://d0.awsstatic.com/whitepapers/AWS_CAF_Security_Perspective.pdf" target="_blank">CAF Components</a></strong>: Preventative, Detective</li>
-<li><strong>AWS Services</strong>: Amazon CloudWatch, mazon GuardDuty AWS CloudTrail, AWS Config, Security Groups, Network ACLs</li>
+<li><strong><a href="https://d0.awsstatic.com/whitepapers/AWS_CAF_Security_Perspective.pdf" target="_blank">CAF Components</a></strong>: Preventative, Detective for Logging and Monitoring and Infrastructure Security</li>
+<li><strong>AWS Services</strong>: Amazon CloudWatch, Amazon GuardDuty, AWS CloudTrail, AWS Config, Security Groups, Network ACLs</li>
 </ul>
 <h2 id="scenario">Scenario</h2>
 <p>For this workshop, you will be securing an architecture that was a "refactored" migration from a traditional three tier on premise architecture. </p>
@@ -557,14 +557,14 @@
 <h2 id="region">Region</h2>
 <p>This workshop has been tested in <em>us-east-1</em>, <em>us-east-2</em>, and <em>us-west-1</em></p>
 <p>First you'll want to <a href="setup/">Set up</a> your environment for this lab by running CloudFormation.</p>
-<p>Then you will perform multiple steps that will guide you through different security tasks: </p>
+<p>Then you will perform multiple steps that will guide you through different security tasks.  These steps will have you diving deep into two of the Core Epics of the Cloud Adoption Framework, namely "Logging and Monitoring" and "Infrastructure Security":</p>
 <ol>
 <li><a href="labsteps/#enable-granular-logging-to-see-everything-in-your-aws-environment">Enable granular logging</a></li>
 <li><a href="labsteps/#granular-provable-control-of-communications">Improve granular control of communication</a></li>
 <li><a href="labsteps/#when-security-includes-explicitly-denying-network-access">Improve granular network-based controls</a></li>
 <li><a href="labsteps/#logging-actions-in-your-environment-and-making-it-easy-to-see-whats-changed">Evaluate detailed logging capabilities</a></li>
 <li><a href="labsteps/#logging-and-monitoring-of-the-network-for-bad-behavior-is-important-too">Evaluate network-based protections</a></li>
-<li><a href="labsteps/#reducing-the-risk-of-admin-access-and-administrative-ports">Minimize admin access risk</a></li>
+<li><a href="labsteps/#consolidating-findings-into-security-hub">Consolidate findings</a></li>
 </ol>
 <p>If you complete all six steps with time to spare, there is <a href="extracredit/">Extra Credit</a> available.</p>
 <p>Finally, make sure to <a href="cleanup/">Clean up</a> your environment to ensure you don't have any continuing charges.</p>

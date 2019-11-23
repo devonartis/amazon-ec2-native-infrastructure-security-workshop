@@ -426,8 +426,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reducing-the-risk-of-admin-access-and-administrative-ports" class="md-nav__link">
-    Reducing the risk of Admin access and administrative ports
+  <a href="#consolidating-findings-into-security-hub" class="md-nav__link">
+    Consolidating findings into Security Hub
   </a>
   
 </li>
@@ -554,8 +554,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reducing-the-risk-of-admin-access-and-administrative-ports" class="md-nav__link">
-    Reducing the risk of Admin access and administrative ports
+  <a href="#consolidating-findings-into-security-hub" class="md-nav__link">
+    Consolidating findings into Security Hub
   </a>
   
 </li>
@@ -587,7 +587,7 @@
 <li><a href="#when-security-includes-explicitly-denying-network-access">Improve granular network-based controls</a></li>
 <li><a href="#logging-actions-in-your-environment-and-making-it-easy-to-see-whats-changed">Evaluate detailed logging capabilities</a></li>
 <li><a href="#logging-and-monitoring-of-the-network-for-bad-behavior-is-important-too">Evaluate network-based protections</a></li>
-<li><a href="#reducing-the-risk-of-admin-access-and-administrative-ports">Minimize admin access risk</a></li>
+<li><a href="#consolidating-findings-into-security-hub">Consolidate findings</a></li>
 </ol>
 <h2 id="enable-granular-logging-to-see-everything-in-your-aws-environment">Enable granular logging to see everything in your AWS environment</h2>
 <p>We want to enable detailed, holistic logging and network-based security monitoring.</p>
@@ -603,15 +603,15 @@
 <li>We should save these for further evaluation, so you would want to <strong>Create a new S3 bucket</strong> and call it “<strong>cloudsecurity-demo-bucket-{myname}</strong>”. (Don’t forget, S3 buckets must have unique names, so make sure to add your name at the end. They can also only be lower case letters, numbers, “-“, and “.”)</li>
 <li>Let’s <strong>Create</strong> that trail. We can come back to look at it later.
 Monitoring what API calls are made is great, but it’s difficult to convert that into something like Change Management for all infrastructure in the cloud. Is there a service to help there?</li>
-<li><strong>Services</strong> called <strong>Config</strong> would be worth looking into.</li>
+<li>Let us also look into one of the <strong>Services</strong> called <strong>Config</strong>.</li>
 <li>After <strong>Getting Started</strong> we can start tracking All resources, Including Global Resources</li>
 <li>We would want to store this data in a central bucket as well. Let’s <strong>Create a new bucket</strong> and use the default to ensure its unique (Note: We could use the bucket we just created, but you would have to add permissions, which would take more time).</li>
 <li>AWS does a good job of clearly defining roles, so let’s allow AWS to <strong>Create AWS Config service-linked role</strong></li>
 <li><strong>Next</strong>, we can choose rules we want to test against, but we can do that later too if we <strong>Skip</strong> it for now.</li>
 <li><strong>Confirm</strong> these choices to enable Config to monitor all changes to our environment. And we’ll see that in a bit.<br />
 Now that we’ve got good logging of the Control Plane (API commands and Changes to the environment), let’s turn on logging of the Data Plane.</li>
-<li>Using a <strong>Service</strong> like <strong>GuardDuty</strong> you can monitor logs in near-real-time for security anomalies.</li>
-<li>After <strong>Getting Started</strong> we can quickly enable this service with just one click. It’s that easy. What is GuardDuty monitoring, we’ll check that out later.</li>
+<li>Then, let us use a <strong>Service</strong> like <strong>GuardDuty</strong> to monitor logs in near real time for security anomalies.</li>
+<li>After <strong>Getting Started</strong> we can quickly enable this service with just one click. It’s that easy. We'll check out what GuardDuty monitoring is later.</li>
 </ol>
 <p>When we looked at our on-premises environment we identified that disjointed security tooling, lack of insight into what’s going on in the environment, and difficulty managing change control and permissions in the environment all led to risks becoming problems pretty fast. With the services we just enabled, we’ll see how we now have complete insight into who’s doing what in the environment, what changes are being made, and if and when problems start to arise.</p>
 <h2 id="granular-provable-control-of-communications">Granular, Provable Control of Communications</h2>
@@ -620,20 +620,20 @@ Now that we’ve got good logging of the Control Plane (API commands and Changes
 <li>Looking at the granular control of system-to-system communication used to be difficult. Now, looking at your <strong>EC2</strong> Service <strong>Security Groups</strong> allows you to quickly see who can talk to whom.</li>
 <li>Picking a Security Group like the <strong>Services Server Security Group</strong> we can see the more traditional way of doing things.</li>
 <li>Checking the <strong>Outbound</strong> rules, we see the servers can talk to a range of IP’s, 65,536 to be precise. But there are only maybe 6-8 servers that they actually need to talk to.</li>
-<li>Well, if we copy the <strong>GroupID</strong> of the <strong>PoC Web Server Security Group</strong> we start to reduce that number</li>
-<li><strong>Edit</strong> the <strong>Outbound</strong> <strong>Services Server Security Group</strong> rules and replace the 10.0.0.0/16 with the Security Group name you copied.</li>
+<li>Well, if we copy the <strong>GroupID</strong> of the <strong>PoC Web Server Security Group</strong> we can start to reduce that number</li>
+<li><strong>Edit</strong> the <strong>Outbound</strong> set of rules for the <strong>Services Server Security Group</strong> and replace the 10.0.0.0/16 with the Security Group name you copied.</li>
 <li><strong>Save</strong> this and you’ll see the <strong>Destination</strong> of the rule now shows the Security Group you listed.</li>
 <li>You can <strong>repeat</strong> this by <strong>Edit</strong>ing and <strong>Adding Rule</strong>s for each security group you want to allow access to.</li>
 </ol>
-<p>In doing this, you’ve reduce the scope of internal traffic communication from 65,636 host down to 8. Additionally, if you ever need to stand up more servers in these groups, they would be automatically accessible without intervention, as long as you put them in the same Security Group. On premise, you would either need to have Firewalls between all internal VLAN’s, Routers, and sites or complex Network ACL’s on every switch in your environment. This reduces the risk of threats, the risk of misconfiguration, and the operational burden all at once.</p>
+<p>In doing this, you’ve reduced the scope of internal traffic communication from 65,636 host down to 8. Additionally, if you ever need to stand up more servers in these groups, they would be automatically accessible without intervention, as long as you put them in the same Security Group. On premise, you would either need to have Firewalls between all internal VLAN’s, Routers, and sites or complex Network ACL’s on every switch in your environment. This reduces the risk of threats, the risk of misconfiguration, and the operational burden all at once.</p>
 <h2 id="when-security-includes-explicitly-denying-network-access">When Security includes explicitly denying network access</h2>
 <p>Let's improve on our network-based controls by using Network ACLs to prevent side-to-side movement in a granular way.</p>
 <ol>
 <li>Security Groups are awesome at allowing access, but in <strong>VPC</strong> Services, <strong>Network ACLs</strong> are great at explicitly blocking them.</li>
 <li>For instance, if you wanted to make sure you explicitly blocked the Load Balancer in my WebApp from talking to my Database servers, you could <strong>Create a network ACL</strong>.</li>
-<li>I would Name it “<strong>LoadBalancerIsolation</strong>” and put it in the <strong>Web Application VPC</strong>.</li>
+<li>I would name it “<strong>LoadBalancerIsolation</strong>” and put it in the <strong>Web Application VPC</strong>.</li>
 <li>I would add an <strong>Outbound Rule</strong> by <strong>Editing Outbound Rules</strong></li>
-<li><strong>Adding Rules</strong> like these would block whatever Subnet you apply this to from talking to the Database Subnets but still allow access to the rest of the network, including the Web and Services VPC.<ul>
+<li><strong>Adding Rules</strong> like these would block whatever Subnet you apply this to from talking to the Database Subnets but still allow access to the rest of the network, including the Web and Services VPC. Note that NACLs are evaluated in the specific order of their Rule #. <ul>
 <li>Rule #: <strong>50</strong><br />
   Of type <strong>All Traffic</strong><br />
   To the Destination <strong>10.0.2.0/24</strong><br />
@@ -646,7 +646,7 @@ Now that we’ve got good logging of the Control Plane (API commands and Changes
        and</li>
 <li>Rule #: <strong>100</strong><br />
   Of type <strong>All Traffic</strong><br />
-  To the Destination <strong>10.0.0.0/8</strong><br />
+  To the Destination <strong>0.0.0.0/0</strong><br />
   And an <strong>Allow</strong> Behavior  </li>
 </ul>
 </li>
@@ -660,7 +660,7 @@ Now that we’ve got good logging of the Control Plane (API commands and Changes
 <li>After <strong>Saving</strong> you would then use <strong>Subnet Associations</strong> to <strong>Edit Subnet Associations</strong>.</li>
 <li>
 <p>Here you would Associate with the <strong>Web App Public Subnet in AZ1</strong> and <strong>Web App Public Subnet in AZ2</strong> subnets by clicking <strong>Edit</strong>.</p>
-<p>Now, you’ve effectively ensured that if the Load Balancers in your environment misbehave, they can’t communicate with or compromise the Database servers directly. But there was no additional hardware firewall or complex routing required to make this simple change in the simple network topology.</p>
+<p>Now, you’ve effectively ensured that if the Load Balancers in your environment misbehave, they can’t communicate with or compromise the Database servers directly. But there was no additional hardware, firewall, or complex routing required to make this simple change in the simple network topology.</p>
 <p>But let’s say you want to go further. The Proof of Concept servers you built aren’t exchanging state so they don’t need to communicate to each other. This way, if one gets compromised it can’t hurt the other. Let’s build that protection.</p>
 </li>
 <li>
@@ -739,37 +739,18 @@ Now that we’ve got good logging of the Control Plane (API commands and Changes
 </li>
 </ol>
 <p>Now you’ve seen that GuardDuty is monitoring logs on your behalf, and without you having to pay for storage, the AI/ML or Threat feeds, and the man hours to do the analysis. This is all happening at Cloud scale too, no longer do you need to have terabytes of logs that are never touched.</p>
-<h2 id="reducing-the-risk-of-admin-access-and-administrative-ports">Reducing the risk of Admin access and administrative ports</h2>
-<p>Finally, let's further reduce administrative risks by reducing access and improving logging. With our current setup, there is still a risk of open administrative ports, right? It's a bigger risk if those ports are open to the internet and a smaller risk if open internally for malware to find. Can we find a way around this requirement?</p>
+<h2 id="consolidating-findings-into-security-hub">Consolidating findings into Security Hub</h2>
 <ol>
-<li>Let’s go back to <strong>VPC</strong> and <strong>Security Groups</strong>.</li>
-<li>Open the <strong>Services Server Security Group</strong> and the <strong>Inbound Rules</strong>.</li>
-<li>Now, despite the fact that those are made up IPs, you are going to <strong>Edit Rules</strong> and delete all the rules (Click the x on the right). Then <strong>Save</strong> and <strong>Close</strong>.</li>
-<li>But with no access, how can we monitor or log into the box if we need to? Our <strong>Service</strong> called <strong>Systems Manager</strong> can help there.</li>
-<li>Systems Manager has a feature called <strong>Session Manager</strong> worth checking out.</li>
-<li>At <strong>Sessions</strong>, you can <strong>Start a session</strong> with any server with the SSM agent and access to the SSM Service.</li>
-<li>We disabled all access to the <strong>Services Server for AZ1</strong>, yet there it is. Let’s select it and <strong>Start session</strong>.</li>
-<li>Is this a console? For the AWS server? Let’s find out.<ul>
-<li>Type: curl http://169.254.169.254/latest/meta-data/instance-id<ul>
-<li>Does that instance ID look familiar?</li>
-</ul>
-</li>
-<li>Try: curl http://169.254.169.254/latest/meta-data/security-groups<ul>
-<li>That looks like the Security Group we modified doesn’t it?</li>
-</ul>
-</li>
-<li>Let’s try: Ping 8.8.8.8<ul>
-<li>Should it work?</li>
-</ul>
-</li>
-<li>Last time: curl http://169.254.169.254/latest/meta-data/iam/security-credentials/SharedServerConnectivityRole<ul>
-<li>Sure looks like an AWS server.</li>
-</ul>
-</li>
-</ul>
-</li>
+<li>You've seen findings in GuardDuty, but you want to collect those findings into your companies <strong>Security Hub</strong>.  Visit the Security Hub service and click <strong>Go to Security Hub</strong></li>
+<li>Click <strong>Enable Security Hub</strong> to grant Security Hub permissions to read data from GuardDuty and Config.  Feel free to click <strong>View Service Permissions</strong> to understand what access you are granting. </li>
+<li>Click <strong>Integrations</strong> to view the currently enabled integrations.  Make sure that GuardDuty Integration is Enabled.  Feel free to enable any other available integration.  Note that most third party integrations will require additional configuration before they will be functional.</li>
+<li>View the <strong>Findings</strong> page, search for "Severity Label EQUALS HIGH".  (Note that the labels are case sensitive.) Click into the first finding. See that there is are fields to tell you severity and also a "Product Name" field that tells you the finding came from GuardDuty.</li>
+<li>View the <strong>Insights</strong> page to see the kinds of analysis that Security Hub has made for you.  </li>
+<li>To make a new analysis, click <strong>Create Insight</strong>. Create your custom search: for example, you can search for <strong>Severity Label EQUALS HIGH</strong> and <strong>Resource Type EQUALS AwsIamAccessKey</strong>.  Finally, you must include a <strong>Group by</strong> filter, for example <strong>Group By Type</strong>  </li>
+<li>Click <strong>Create Insight</strong> to save, and give your insight a name such as "High Severity IAM Access Key findings"</li>
+<li>Finally, note that you can see and send Insights into custom actions for notification and remediation. </li>
 </ol>
-<p>Congratulations!  You have successfully set up this AWS environment for strong logging with Cloudtrail and Config, granular communication with Security Groups and nACLs, intelligent threat detection with AWS GuardDuty and removed additional admin port risk by configuring AWS System Manager.</p>
+<p>Congratulations!  You have successfully set up this AWS environment for strong logging with Cloudtrail and Config, granular communication with Security Groups and NACLs, intelligent threat detection with AWS GuardDuty and used Security Hub to centralize alerts and execute custom actions based on security insights.</p>
 <p>If you have reached the bottom of this page with time to spare, there is <a href="../extracredit/">Extra Credit</a> available.</p>
 <p>Finally, make sure to <a href="../cleanup/">Clean up</a> your environment to ensure you don't have any continuing charges.</p>
                 

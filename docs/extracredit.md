@@ -36,17 +36,25 @@ There is a way to log all commands sent to the instance as well. First, you have
 8.    Expand the Inline Policy and click **Edit Policy**
 9.    **Add additional permissions** including
 
-         **S3**  
-         >    **Write**  
-         >    **Bucket: Any**  
-         >    **Object**: **Any**  
+[//]: # (Comment: To make linebreaks work here, you have to have two invisible spaces after each line.)
+  	 **S3**
+	 > **Write**   
+	 > **Bucket**: **Any**   
+	 > **Object**: **Any**
 
-         **CloudWatch Logs**  
-         >    **Write**  
-         >    **Log Group: Any**  
-         >    **Log Stream: Any**  
-         >    **logs:DescribeLogGroups**  
-         >    **logs:DescribeLogStreams**  
+  	 **CloudWatch Logs**
+	 > **Write**   
+	 > **Log Group**   
+	 > **Log Stream**   
+	 > **logs:DescribeLogGroups**   
+	 > **logs:DescribeLogStreams**   
+
+  	 **EC2 Messages**
+	 > **GetMessages**   
+
+	 **Systems Manager**
+	 > **ListInstanceAssociations**   
+	 > **UpdateInstanceAssociations**   
 
 10.    **Review the policy** and **Save Changes**
 11.    If there are any errors, go to **Previous** and keep adding **Any** to the resources the policy requires defined.  
