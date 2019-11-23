@@ -28,8 +28,8 @@ Monitoring what API calls are made is great, but it’s difficult to convert tha
 12.    **Next**, we can choose rules we want to test against, but we can do that later too if we **Skip** it for now.
 13.    **Confirm** these choices to enable Config to monitor all changes to our environment. And we’ll see that in a bit.  
 Now that we’ve got good logging of the Control Plane (API commands and Changes to the environment), let’s turn on logging of the Data Plane.
-14.    Then, let us use a **Service** like **GuardDuty** to monitor logs in near-real-time for security anomalies.
-15.    After **Getting Started** we can quickly enable this service with just one click. It’s that easy. What is GuardDuty monitoring, we’ll check that out later.
+14.    Then, let us use a **Service** like **GuardDuty** to monitor logs in near real time for security anomalies.
+15.    After **Getting Started** we can quickly enable this service with just one click. It’s that easy. We'll check out what GuardDuty monitoring is later.
 
 When we looked at our on-premises environment we identified that disjointed security tooling, lack of insight into what’s going on in the environment, and difficulty managing change control and permissions in the environment all led to risks becoming problems pretty fast. With the services we just enabled, we’ll see how we now have complete insight into who’s doing what in the environment, what changes are being made, and if and when problems start to arise.
 
@@ -39,12 +39,12 @@ Let's review and improve upon granular control of communication between workload
 1. Looking at the granular control of system-to-system communication used to be difficult. Now, looking at your **EC2** Service **Security Groups** allows you to quickly see who can talk to whom.
 2.    Picking a Security Group like the **Services Server Security Group** we can see the more traditional way of doing things.
 3.    Checking the **Outbound** rules, we see the servers can talk to a range of IP’s, 65,536 to be precise. But there are only maybe 6-8 servers that they actually need to talk to.
-4.    Well, if we copy the **GroupID** of the **PoC Web Server Security Group** we start to reduce that number
+4.    Well, if we copy the **GroupID** of the **PoC Web Server Security Group** we can start to reduce that number
 5.    **Edit** the **Outbound** set of rules for the **Services Server Security Group** and replace the 10.0.0.0/16 with the Security Group name you copied.
 6.    **Save** this and you’ll see the **Destination** of the rule now shows the Security Group you listed.
 7.    You can **repeat** this by **Edit**ing and **Adding Rule**s for each security group you want to allow access to.
 
-In doing this, you’ve reduce the scope of internal traffic communication from 65,636 host down to 8\. Additionally, if you ever need to stand up more servers in these groups, they would be automatically accessible without intervention, as long as you put them in the same Security Group. On premise, you would either need to have Firewalls between all internal VLAN’s, Routers, and sites or complex Network ACL’s on every switch in your environment. This reduces the risk of threats, the risk of misconfiguration, and the operational burden all at once.
+In doing this, you’ve reduced the scope of internal traffic communication from 65,636 host down to 8\. Additionally, if you ever need to stand up more servers in these groups, they would be automatically accessible without intervention, as long as you put them in the same Security Group. On premise, you would either need to have Firewalls between all internal VLAN’s, Routers, and sites or complex Network ACL’s on every switch in your environment. This reduces the risk of threats, the risk of misconfiguration, and the operational burden all at once.
 
 ## When Security includes explicitly denying network access
 Let's improve on our network-based controls by using Network ACLs to prevent side-to-side movement in a granular way.
@@ -53,7 +53,7 @@ Let's improve on our network-based controls by using Network ACLs to prevent sid
 2.    For instance, if you wanted to make sure you explicitly blocked the Load Balancer in my WebApp from talking to my Database servers, you could **Create a network ACL**.
 3.    I would name it “**LoadBalancerIsolation**” and put it in the **Web Application VPC**.
 4.    I would add an **Outbound Rule** by **Editing Outbound Rules**
-5.    **Adding Rules** like these would block whatever Subnet you apply this to from talking to the Database Subnets but still allow access to the rest of the network, including the Web and Services VPC. Note that NACLs are evaluated in thespecific order of their Rule #. 
+5.    **Adding Rules** like these would block whatever Subnet you apply this to from talking to the Database Subnets but still allow access to the rest of the network, including the Web and Services VPC. Note that NACLs are evaluated in the specific order of their Rule #. 
       * Rule #: **50**  
       Of type **All Traffic**  
       To the Destination **10.0.2.0/24**  
@@ -66,7 +66,7 @@ Let's improve on our network-based controls by using Network ACLs to prevent sid
            and
       * Rule #: **100**  
       Of type **All Traffic**  
-      To the Destination **10.0.0.0/8**  
+      To the Destination **0.0.0.0/0**  
       And an **Allow** Behavior  
 6.    After **Saving** you need to allow access to that subnet from the internet, so recreating the **All Traffic Allow** rule for **Inbound Rules** is necessary. **Add a Rule**
       * Rule #: **100**  
@@ -76,7 +76,7 @@ Let's improve on our network-based controls by using Network ACLs to prevent sid
 2.    After **Saving** you would then use **Subnet Associations** to **Edit Subnet Associations**.
 3.    Here you would Associate with the **Web App Public Subnet in AZ1** and **Web App Public Subnet in AZ2** subnets by clicking **Edit**.
 
-      Now, you’ve effectively ensured that if the Load Balancers in your environment misbehave, they can’t communicate with or compromise the Database servers directly. But there was no additional hardware firewall or complex routing required to make this simple change in the simple network topology.
+      Now, you’ve effectively ensured that if the Load Balancers in your environment misbehave, they can’t communicate with or compromise the Database servers directly. But there was no additional hardware, firewall, or complex routing required to make this simple change in the simple network topology.
 
      But let’s say you want to go further. The Proof of Concept servers you built aren’t exchanging state so they don’t need to communicate to each other. This way, if one gets compromised it can’t hurt the other. Let’s build that protection.
 
