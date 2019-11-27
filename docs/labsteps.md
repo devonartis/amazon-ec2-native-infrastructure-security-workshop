@@ -102,9 +102,9 @@ Let's improve on our network-based controls by using Network ACLs to prevent sid
 1.    After **Saving** you would then use **Subnet Associations** to **Edit Subnet Associations**.
 2.    Here you would Associate with the **Proof of Concept Public Subnet in AZ1** subnets by clicking **Edit**.
 3.    You can choose to duplicate those steps to block the other direction by setting
-        *    Name to “**PoCProtectionAZ2**”
-        *    Blocking traffic to the Destination **10.250.0.0/24**
-        *    And Associating with **Proof of Concept Public Subnet in AZ2**
+      * Name to “**PoCProtectionAZ2**”
+      * Blocking traffic to the Destination **10.250.0.0/24**
+      * And Associating with **Proof of Concept Public Subnet in AZ2**
 
 Now, even within the same workload or application you are protecting servers from each other where putting Firewalls in the past would have been impossible.
 
