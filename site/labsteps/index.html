@@ -724,8 +724,9 @@ Now that we’ve got good logging of the Control Plane (API commands and Changes
 <li>Let’s go back to <strong>GuardDuty</strong> and see what findings we may have.  If this is a new or infrequently used account, you may have no Findings. If you do have Findings and this is not a new account, we can walk through those separately.</li>
 <li>Since this is a good design and relatively new, let’s create some demonstration findings in <strong>Settings</strong></li>
 <li>After we <strong>Generate sample findings</strong> we can go back to the <strong>Findings</strong></li>
-<li>17 High Severity Findings, 30 Medium Severity Findings, and 7 Informational Findings (where can you see those numbers quickly) show up. Let’s investigate the first High Severity, <strong>[SAMPLE] Trojan:EC2/PhishingDomainRequest!DNS</strong>.</li>
-<li>You can see the (fake) instance that caused this Finding, what the instance did wrong, when it occurred, and more information. The “!DNS” at the end means something, do you know what? Does the <strong>Action Type</strong> help?  <ul>
+<li>16 High Severity Findings, 30 Medium Severity Findings, and 7 Informational Findings (where can you see those numbers quickly) show up. Let’s investigate the High Severity finding called <strong>[SAMPLE] 
+[SAMPLE] Backdoor:EC2/DenialOfService.Dns</strong></li>
+<li>You can see the (fake) instance that caused this Finding, what the instance did wrong, when it occurred, and more information. The “.DnsS” at the end means something, do you know what? Does the <strong>Action Type</strong> help?  <ul>
 <li>What are the 3 data sources GuardDuty uses?</li>
 </ul>
 </li>
@@ -734,7 +735,7 @@ Now that we’ve got good logging of the Control Plane (API commands and Changes
 <li>If we didn’t turn on those logs how did it see the traffic?</li>
 </ul>
 </li>
-<li><strong>Scrolling down</strong> the Findings list a bit more you find <strong>[SAMPLE] UnauthorizedAccess:IAMUser/TorIPCaller</strong>.</li>
+<li><strong>Scrolling down</strong> the Findings list a bit more you find <strong>[SAMPLE]UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration</strong></li>
 <li>This one not only has a different <strong>Action Type</strong> but also starts with <strong>IAMUser</strong> instead of <strong>EC2</strong>. Why does that matter?  <ul>
 <li>Is this a different data source?</li>
 </ul>

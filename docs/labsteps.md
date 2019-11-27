@@ -130,7 +130,7 @@ How would you do this on-premises?
 3.    After we **Generate sample findings** we can go back to the **Findings**
 4.    16 High Severity Findings, 30 Medium Severity Findings, and 7 Informational Findings (where can you see those numbers quickly) show up. Let’s investigate the High Severity finding called **[SAMPLE] 
 [SAMPLE] Backdoor:EC2/DenialOfService.Dns**
-5.    You can see the (fake) instance that caused this Finding, what the instance did wrong, when it occurred, and more information. The “.DnsS” at the end means something, do you know what? Does the **Action Type** help?  
+5.    You can see the (fake) instance that caused this Finding, what the instance did wrong, when it occurred, and more information. The “.Dns” at the end means something, do you know what? Does the **Action Type** help?  
       * What are the 3 data sources GuardDuty uses?
 6.    **Scrolling down** the Findings list again you see another high severity **[SAMPLE] Backdoor:EC2/DenialOfService.UdpOnTcpPorts**.
 7.    Here you see a lot of the same type of information. But why is this **Action Type** different?
