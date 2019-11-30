@@ -752,25 +752,20 @@ Now that we’ve got good logging of the Control Plane (API commands and Changes
 <li>Systems Manager has a feature called <strong>Session Manager</strong> worth checking out.</li>
 <li>At <strong>Sessions</strong>, you can <strong>Start a session</strong> with any server with the SSM agent and access to the SSM Service.</li>
 <li>We disabled all access to the <strong>Services Server for AZ1</strong>, yet there it is. Let’s select it and <strong>Start session</strong>.</li>
-<li>Is this a console? For the AWS server? Let’s find out.<ul>
-<li>Type: TOKEN=<code>curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"</code></li>
-<li>Type: curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/instance-id<ul>
-<li>Does that instance ID look familiar?</li>
-</ul>
-</li>
-<li>Try: curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/security-groups<ul>
-<li>That looks like the Security Group we modified doesn’t it?</li>
-</ul>
-</li>
-<li>Let’s try: ping 8.8.8.8<ul>
-<li>Should it work?</li>
-</ul>
-</li>
-<li>Last time: curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/iam/security-credentials/SharedServerConnectivityRole<ul>
-<li>Sure looks like an AWS server.</li>
-</ul>
-</li>
-</ul>
+<li>Is this a console? For the AWS server? Let’s find out.  Type: 
+        &gt;  TOKEN=<code>curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"</code>
+        &gt;  curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/instance-id
+           *   Does that instance ID look familiar?<div class="codehilite"><pre><span></span><span class="o">&gt;</span>  <span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="ss">&quot;X-aws-ec2-metadata-token: $TOKEN&quot;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mi">169</span><span class="p">.</span><span class="mi">254</span><span class="p">.</span><span class="mi">169</span><span class="p">.</span><span class="mi">254</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="n">meta</span><span class="o">-</span><span class="k">data</span><span class="o">/</span><span class="k">security</span><span class="o">-</span><span class="n">groups</span>
+   <span class="o">*</span>  <span class="n">That</span> <span class="n">looks</span> <span class="k">like</span> <span class="n">the</span> <span class="k">Security</span> <span class="k">Group</span> <span class="n">we</span> <span class="n">modified</span> <span class="n">doesn</span><span class="err">’</span><span class="n">t</span> <span class="n">it</span><span class="o">?</span>
+
+<span class="o">&gt;</span>  <span class="n">ping</span> <span class="mi">8</span><span class="p">.</span><span class="mi">8</span><span class="p">.</span><span class="mi">8</span><span class="p">.</span><span class="mi">8</span>
+   <span class="o">*</span>  <span class="n">Should</span> <span class="n">it</span> <span class="k">work</span><span class="o">?</span>
+
+<span class="o">&gt;</span>  <span class="n">curl</span> <span class="o">-</span><span class="n">H</span> <span class="ss">&quot;X-aws-ec2-metadata-token: $TOKEN&quot;</span>  <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mi">169</span><span class="p">.</span><span class="mi">254</span><span class="p">.</span><span class="mi">169</span><span class="p">.</span><span class="mi">254</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="n">meta</span><span class="o">-</span><span class="k">data</span><span class="o">/</span><span class="n">iam</span><span class="o">/</span><span class="k">security</span><span class="o">-</span><span class="n">credentials</span><span class="o">/</span><span class="n">SharedServerConnectivityRole</span>
+   <span class="o">*</span>  <span class="n">Sure</span> <span class="n">looks</span> <span class="k">like</span> <span class="n">an</span> <span class="n">AWS</span> <span class="n">server</span><span class="p">.</span>
+</pre></div>
+
+
 </li>
 </ol>
 <p>Congratulations!  You have successfully set up this AWS environment for strong logging with Cloudtrail and Config, granular communication with Security Groups and NACLs, intelligent threat detection with AWS GuardDuty, and configured your machines to have safe administrative access without requiring access from the public internet. </p>
