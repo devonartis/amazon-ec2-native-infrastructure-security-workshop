@@ -426,8 +426,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#consolidating-findings-into-security-hub" class="md-nav__link">
-    Consolidating findings into Security Hub
+  <a href="#reducing-the-risk-of-admin-access-and-administrative-ports" class="md-nav__link">
+    Reducing the risk of Admin access and administrative ports
   </a>
   
 </li>
@@ -554,8 +554,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#consolidating-findings-into-security-hub" class="md-nav__link">
-    Consolidating findings into Security Hub
+  <a href="#reducing-the-risk-of-admin-access-and-administrative-ports" class="md-nav__link">
+    Reducing the risk of Admin access and administrative ports
   </a>
   
 </li>
@@ -587,7 +587,7 @@
 <li><a href="#when-security-includes-explicitly-denying-network-access">Improve granular network-based controls</a></li>
 <li><a href="#logging-actions-in-your-environment-and-making-it-easy-to-see-whats-changed">Evaluate detailed logging capabilities</a></li>
 <li><a href="#logging-and-monitoring-of-the-network-for-bad-behavior-is-important-too">Evaluate network-based protections</a></li>
-<li><a href="#consolidating-findings-into-security-hub">Consolidate findings</a></li>
+<li><a href="#reducing-the-risk-of-admin-access-and-administrative-ports">Minimize admin access risk</a></li>
 </ol>
 <h2 id="enable-granular-logging-to-see-everything-in-your-aws-environment">Enable granular logging to see everything in your AWS environment</h2>
 <p>We want to enable detailed, holistic logging and network-based security monitoring.</p>
@@ -726,7 +726,7 @@ Now that we’ve got good logging of the Control Plane (API commands and Changes
 <li>After we <strong>Generate sample findings</strong> we can go back to the <strong>Findings</strong></li>
 <li>16 High Severity Findings, 30 Medium Severity Findings, and 7 Informational Findings (where can you see those numbers quickly) show up. Let’s investigate the High Severity finding called <strong>[SAMPLE] 
 [SAMPLE] Backdoor:EC2/DenialOfService.Dns</strong></li>
-<li>You can see the (fake) instance that caused this Finding, what the instance did wrong, when it occurred, and more information. The “.DnsS” at the end means something, do you know what? Does the <strong>Action Type</strong> help?  <ul>
+<li>You can see the (fake) instance that caused this Finding, what the instance did wrong, when it occurred, and more information. The “.Dns” at the end means something, do you know what? Does the <strong>Action Type</strong> help?  <ul>
 <li>What are the 3 data sources GuardDuty uses?</li>
 </ul>
 </li>
@@ -742,18 +742,38 @@ Now that we’ve got good logging of the Control Plane (API commands and Changes
 </li>
 </ol>
 <p>Now you’ve seen that GuardDuty is monitoring logs on your behalf, and without you having to pay for storage, the AI/ML or Threat feeds, and the man hours to do the analysis. This is all happening at Cloud scale too, no longer do you need to have terabytes of logs that are never touched.</p>
-<h2 id="consolidating-findings-into-security-hub">Consolidating findings into Security Hub</h2>
+<h2 id="reducing-the-risk-of-admin-access-and-administrative-ports">Reducing the risk of Admin access and administrative ports</h2>
+<p>Finally, let's further reduce administrative risks by reducing access and improving logging. With our current setup, there is still a risk of open administrative ports, right? It's a bigger risk if those ports are open to the internet and a smaller risk if open internally for malware to find. Can we find a way around this requirement?</p>
 <ol>
-<li>You've seen findings in GuardDuty, but you want to collect those findings into your companies <strong>Security Hub</strong>.  Visit the Security Hub service and click <strong>Go to Security Hub</strong></li>
-<li>Click <strong>Enable Security Hub</strong> to grant Security Hub permissions to read data from GuardDuty and Config.  Feel free to click <strong>View Service Permissions</strong> to understand what access you are granting. </li>
-<li>Click <strong>Integrations</strong> to view the currently enabled integrations.  Make sure that GuardDuty Integration is Enabled.  Feel free to enable any other available integration.  Note that most third party integrations will require additional configuration before they will be functional.</li>
-<li>View the <strong>Findings</strong> page, search for "Severity Label EQUALS HIGH".  (Note that the labels are case sensitive.) Click into the first finding. See that there is are fields to tell you severity and also a "Product Name" field that tells you the finding came from GuardDuty.</li>
-<li>View the <strong>Insights</strong> page to see the kinds of analysis that Security Hub has made for you.  </li>
-<li>To make a new analysis, click <strong>Create Insight</strong>. Create your custom search: for example, you can search for <strong>Severity Label EQUALS HIGH</strong> and <strong>Resource Type EQUALS AwsIamAccessKey</strong>.  Finally, you must include a <strong>Group by</strong> filter, for example <strong>Group By Type</strong>  </li>
-<li>Click <strong>Create Insight</strong> to save, and give your insight a name such as "High Severity IAM Access Key findings"</li>
-<li>Finally, note that you can see and send Insights into custom actions for notification and remediation. </li>
+<li>Let’s go back to <strong>VPC</strong> and <strong>Security Groups</strong>.</li>
+<li>Open the <strong>Services Server Security Group</strong> and the <strong>Inbound Rules</strong>.</li>
+<li>Now, despite the fact that those are made up IPs, you are going to <strong>Edit Rules</strong> and delete all the rules (Click the x on the right). Then <strong>Save</strong> and <strong>Close</strong>.</li>
+<li>But with no access, how can we monitor or log into the box if we need to? Our <strong>Service</strong> called <strong>Systems Manager</strong> can help there.</li>
+<li>Systems Manager has a feature called <strong>Session Manager</strong> worth checking out.</li>
+<li>At <strong>Sessions</strong>, you can <strong>Start a session</strong> with any server with the SSM agent and access to the SSM Service.</li>
+<li>We disabled all access to the <strong>Services Server for AZ1</strong>, yet there it is. Let’s select it and <strong>Start session</strong>.</li>
+<li>Is this a console? For the AWS server? Let’s find out.<ul>
+<li>Type: TOKEN=<code>curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"</code></li>
+<li>Type: curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/instance-id<ul>
+<li>Does that instance ID look familiar?</li>
+</ul>
+</li>
+<li>Try: curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/security-groups<ul>
+<li>That looks like the Security Group we modified doesn’t it?</li>
+</ul>
+</li>
+<li>Let’s try: ping 8.8.8.8<ul>
+<li>Should it work?</li>
+</ul>
+</li>
+<li>Last time: curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/iam/security-credentials/SharedServerConnectivityRole<ul>
+<li>Sure looks like an AWS server.</li>
+</ul>
+</li>
+</ul>
+</li>
 </ol>
-<p>Congratulations!  You have successfully set up this AWS environment for strong logging with Cloudtrail and Config, granular communication with Security Groups and NACLs, intelligent threat detection with AWS GuardDuty and used Security Hub to centralize alerts and execute custom actions based on security insights.</p>
+<p>Congratulations!  You have successfully set up this AWS environment for strong logging with Cloudtrail and Config, granular communication with Security Groups and NACLs, intelligent threat detection with AWS GuardDuty, and configured your machines to have safe administrative access without requiring access from the public internet. </p>
 <p>If you have reached the bottom of this page with time to spare, there is <a href="../extracredit/">Extra Credit</a> available.</p>
 <p>Finally, make sure to <a href="../cleanup/">Clean up</a> your environment to ensure you don't have any continuing charges.</p>
                 

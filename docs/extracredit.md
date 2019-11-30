@@ -59,9 +59,10 @@ _This can be more restrictive in a production environment._
 16.    **Save** that configuration.
 17.    Now back at **Sessions**, you can **Start a session** with any server with the SSM agent and access to the SSM Service.
 
-        >  curl http://169.254.169.254/latest/meta-data/instance-id  
-        >  curl http://169.254.169.254/latest/meta-data/security-groups  
-        >  curl http://169.254.169.254/latest/meta-data/iam/security-credentials/SharedServerConnectivityRole  
+        >  TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
+        >  curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/instance-id
+        >  curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/security-groups
+        >  curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/iam/security-credentials/SharedServerConnectivityRole
 
 18.    **Terminate** the connection.
 19.    Checking **Session History** you will see the **Output Location** of your log.
