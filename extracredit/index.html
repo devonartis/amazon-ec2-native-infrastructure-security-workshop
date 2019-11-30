@@ -399,8 +399,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reducing-the-risk-of-admin-access-and-administrative-ports" class="md-nav__link">
-    Reducing the risk of Admin access and administrative ports
+  <a href="#consolidating-findings-into-security-hub" class="md-nav__link">
+    Consolidating findings into Security Hub
   </a>
   
 </li>
@@ -485,8 +485,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#reducing-the-risk-of-admin-access-and-administrative-ports" class="md-nav__link">
-    Reducing the risk of Admin access and administrative ports
+  <a href="#consolidating-findings-into-security-hub" class="md-nav__link">
+    Consolidating findings into Security Hub
   </a>
   
 </li>
@@ -521,38 +521,19 @@
                 
                 <h2 id="extra-credit-sections">Extra Credit Sections</h2>
 <ol>
-<li><a href="#reducing-the-risk-of-admin-access-and-administrative-ports">Minimize admin access risk</a></li>
+<li><a href="#consolidating-findings-into-security-hub">Consolidating findings into Security Hub</a></li>
 <li><a href="#logging-all-commands">Log all commands</a></li>
 </ol>
-<h2 id="reducing-the-risk-of-admin-access-and-administrative-ports">Reducing the risk of Admin access and administrative ports</h2>
-<p>Finally, let's further reduce administrative risks by reducing access and improving logging. With our current setup, there is still a risk of open administrative ports, right? It's a bigger risk if those ports are open to the internet and a smaller risk if open internally for malware to find. Can we find a way around this requirement?</p>
+<h2 id="consolidating-findings-into-security-hub">Consolidating findings into Security Hub</h2>
 <ol>
-<li>Let’s go back to <strong>VPC</strong> and <strong>Security Groups</strong>.</li>
-<li>Open the <strong>Services Server Security Group</strong> and the <strong>Inbound Rules</strong>.</li>
-<li>Now, despite the fact that those are made up IPs, you are going to <strong>Edit Rules</strong> and delete all the rules (Click the x on the right). Then <strong>Save</strong> and <strong>Close</strong>.</li>
-<li>But with no access, how can we monitor or log into the box if we need to? Our <strong>Service</strong> called <strong>Systems Manager</strong> can help there.</li>
-<li>Systems Manager has a feature called <strong>Session Manager</strong> worth checking out.</li>
-<li>At <strong>Sessions</strong>, you can <strong>Start a session</strong> with any server with the SSM agent and access to the SSM Service.</li>
-<li>We disabled all access to the <strong>Services Server for AZ1</strong>, yet there it is. Let’s select it and <strong>Start session</strong>.</li>
-<li>Is this a console? For the AWS server? Let’s find out.<ul>
-<li>Type: curl http://169.254.169.254/latest/meta-data/instance-id<ul>
-<li>Does that instance ID look familiar?</li>
-</ul>
-</li>
-<li>Try: curl http://169.254.169.254/latest/meta-data/security-groups<ul>
-<li>That looks like the Security Group we modified doesn’t it?</li>
-</ul>
-</li>
-<li>Let’s try: Ping 8.8.8.8<ul>
-<li>Should it work?</li>
-</ul>
-</li>
-<li>Last time: curl http://169.254.169.254/latest/meta-data/iam/security-credentials/SharedServerConnectivityRole<ul>
-<li>Sure looks like an AWS server.</li>
-</ul>
-</li>
-</ul>
-</li>
+<li>You've seen findings in GuardDuty, but you want to collect those findings into your companies <strong>Security Hub</strong>.  Visit the Security Hub service and click <strong>Go to Security Hub</strong></li>
+<li>Click <strong>Enable Security Hub</strong> to grant Security Hub permissions to read data from GuardDuty and Config.  Feel free to click <strong>View Service Permissions</strong> to understand what access you are granting.</li>
+<li>Click <strong>Integrations</strong> to view the currently enabled integrations.  Make sure that GuardDuty Integration is Enabled.  Feel free to enable any other available integration.  Note that most third party integrations will require additional configuration before they will be functional.</li>
+<li>View the <strong>Findings</strong> page, search for "Severity Label EQUALS HIGH".  (Note that the labels are case sensitive.) Click into the first finding. See that there is are fields to tell you severity and also a "Product Name" field that tells you the finding came from GuardDuty.</li>
+<li>View the <strong>Insights</strong> page to see the kinds of analysis that Security Hub has made for you.</li>
+<li>To make a new analysis, click <strong>Create Insight</strong>. Create your custom search: for example, you can search for <strong>Severity Label EQUALS HIGH</strong> and <strong>Resource Type EQUALS AwsIamAccessKey</strong>.  Finally, you must include a <strong>Group by</strong> filter, for example <strong>Group By Type</strong></li>
+<li>Click <strong>Create Insight</strong> to save, and give your insight a name such as "High Severity IAM Access Key findings"</li>
+<li>Finally, note that you can see and send Insights into custom actions for notification and remediation.</li>
 </ol>
 <h2 id="logging-all-commands">Logging all commands</h2>
 <p>There is a way to log all commands sent to the instance as well. First, you have to create S3 buckets and CloudWatch Logs.</p>
