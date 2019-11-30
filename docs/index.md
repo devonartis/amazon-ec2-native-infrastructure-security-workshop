@@ -34,7 +34,7 @@ Then you will perform multiple steps that will guide you through different secur
 3.    [Improve granular network-based controls](./labsteps.md#when-security-includes-explicitly-denying-network-access)
 4.    [Evaluate detailed logging capabilities](./labsteps.md#logging-actions-in-your-environment-and-making-it-easy-to-see-whats-changed)
 5.    [Evaluate network-based protections](./labsteps.md#logging-and-monitoring-of-the-network-for-bad-behavior-is-important-too)
-6.    [Minimize admin access risk](#reducing-the-risk-of-admin-access-and-administrative-ports)
+6.    [Minimize admin access risk](./labsteps.md#reducing-the-risk-of-admin-access-and-administrative-ports)
 
 If you complete all six steps with time to spare, there is [Extra Credit](./extracredit.md) available.
 
