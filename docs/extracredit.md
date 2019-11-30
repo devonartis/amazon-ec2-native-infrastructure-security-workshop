@@ -1,28 +1,19 @@
 ## Extra Credit Sections
 
-1.    [Minimize admin access risk](#reducing-the-risk-of-admin-access-and-administrative-ports)
+1.    [Consolidating findings into Security Hub](#consolidating-findings-into-security-hub)
 2.    [Log all commands](#logging-all-commands)
 
-## Reducing the risk of Admin access and administrative ports
-Finally, let's further reduce administrative risks by reducing access and improving logging. With our current setup, there is still a risk of open administrative ports, right? It's a bigger risk if those ports are open to the internet and a smaller risk if open internally for malware to find. Can we find a way around this requirement?
+## Consolidating findings into Security Hub
+1. You've seen findings in GuardDuty, but you want to collect those findings into your companies **Security Hub**.  Visit the Security Hub service and click **Go to Security Hub**
+2. Click **Enable Security Hub** to grant Security Hub permissions to read data from GuardDuty and Config.  Feel free to click **View Service Permissions** to understand what access you are granting.
+3. Click **Integrations** to view the currently enabled integrations.  Make sure that GuardDuty Integration is Enabled.  Feel free to enable any other available integration.  Note that most third party integrations will require additional configuration before they will be functional.
+4. View the **Findings** page, search for "Severity Label EQUALS HIGH".  (Note that the labels are case sensitive.) Click into the first finding. See that there is are fields to tell you severity and also a "Product Name" field that tells you the finding came from GuardDuty.
+5. View the **Insights** page to see the kinds of analysis that Security Hub has made for you.
+6. To make a new analysis, click **Create Insight**. Create your custom search: for example, you can search for **Severity Label EQUALS HIGH** and **Resource Type EQUALS AwsIamAccessKey**.  Finally, you must include a **Group by** filter, for example **Group By Type**
+7. Click **Create Insight** to save, and give your insight a name such as "High Severity IAM Access Key findings"
+8. Finally, note that you can see and send Insights into custom actions for notification and remediation.
 
-1.    Let’s go back to **VPC** and **Security Groups**.
-2.    Open the **Services Server Security Group** and the **Inbound Rules**.
-3.    Now, despite the fact that those are made up IPs, you are going to **Edit Rules** and delete all the rules (Click the x on the right). Then **Save** and **Close**.
-4.    But with no access, how can we monitor or log into the box if we need to? Our **Service** called **Systems Manager** can help there.
-5.    Systems Manager has a feature called **Session Manager** worth checking out.
-6.    At **Sessions**, you can **Start a session** with any server with the SSM agent and access to the SSM Service.
-7.    We disabled all access to the **Services Server for AZ1**, yet there it is. Let’s select it and **Start session**.
-8.    Is this a console? For the AWS server? Let’s find out.
-      *    Type: TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
-      *    Type: curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/instance-id
-           *   Does that instance ID look familiar?
-      *    Try: curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/security-groups
-           *  That looks like the Security Group we modified doesn’t it?
-      *    Let’s try: ping 8.8.8.8
-           *  Should it work?
-      *    Last time: curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/iam/security-credentials/SharedServerConnectivityRole
-           *  Sure looks like an AWS server.
+
 
 ## Logging all commands
 There is a way to log all commands sent to the instance as well. First, you have to create S3 buckets and CloudWatch Logs.
