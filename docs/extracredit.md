@@ -14,13 +14,14 @@ Finally, let's further reduce administrative risks by reducing access and improv
 6.    At **Sessions**, you can **Start a session** with any server with the SSM agent and access to the SSM Service.
 7.    We disabled all access to the **Services Server for AZ1**, yet there it is. Let’s select it and **Start session**.
 8.    Is this a console? For the AWS server? Let’s find out.
-      *    Type: curl http://169.254.169.254/latest/meta-data/instance-id
+      *    Type: TOKEN=`curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600"`
+      *    Type: curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/instance-id
            *   Does that instance ID look familiar?
-      *    Try: curl http://169.254.169.254/latest/meta-data/security-groups
+      *    Try: curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/security-groups
            *  That looks like the Security Group we modified doesn’t it?
-      *    Let’s try: Ping 8.8.8.8
+      *    Let’s try: ping 8.8.8.8
            *  Should it work?
-      *    Last time: curl http://169.254.169.254/latest/meta-data/iam/security-credentials/SharedServerConnectivityRole
+      *    Last time: curl -H "X-aws-ec2-metadata-token: $TOKEN"  http://169.254.169.254/latest/meta-data/iam/security-credentials/SharedServerConnectivityRole
            *  Sure looks like an AWS server.
 
 ## Logging all commands
